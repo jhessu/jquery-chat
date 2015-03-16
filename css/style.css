@@ -15,8 +15,9 @@ p {
 }
 
 .smallc {
-    font-size: 12px;
+    font-size: 13px;
     color: #999;
+    font-style: italic;
 }
 
 #logo {
