@@ -1,5 +1,5 @@
 // A 100% javascript facebook/gmail style web chat.
-// (c) 2013-2014 Ezequiel Lovelle [ezequiellovelle@gmail.com]
+// (c) 2014-2015 Ezequiel Lovelle [ezequiellovelle@gmail.com]
 // released under the MIT license
 
 (function( $ ) {
@@ -373,21 +373,23 @@
     });
 
     //Search
-    $( "#icon-search" ).button({
+    $( "#chat-icon-search" ).button({
       icons: {
         primary: "ui-icon-search"
       },
       text: false
     });
-    $( "#icon-close" ).button({
-      icons: {
-        primary: "ui-icon-close"
-      },
-      text: false
-    });
+    $( "#chat-search-text" ).button()
+      .next()
+        .button({
+          text: false,
+          icons: {
+            primary: "ui-icon-close"
+          }
+        }).parent().buttonset();
 
     //Search the user
-    $( "#search" ).keyup(function() {
+    $( "#chat-search-text" ).keyup(function() {
       $( this ).val( $( this ).val().replace(/[^A-Za-z ]/g, '') );
       if ( $( this ).val().length >= 2 ) {
         var filter = $( this ).val();
@@ -410,8 +412,8 @@
     });
 
     //Button close search for clean it
-    $( "#icon-close" ).click(function() {
-      $( "#search" ).val( "" );
+    $( "#chat-icon-close" ).click(function() {
+      $( "#chat-search-text" ).val( "" );
       $( "#main-sort-chat" ).find( "li" ).slideDown().parent().show();
       if ( $( "#no-users-found" ).length > 0 )$( "#no-users-found" ).remove();
       return false;
@@ -977,9 +979,9 @@
       $( "#tools, #tools-panel" ).attr( "title", i18n.tools );
       $( "#options, #options-panel" ).attr( "title", i18n.options );
       $( "#rerun-select" ).attr( "title", i18n.choose_stat );
-      $( "#search" ).attr( "placeholder", i18n.search );
-      $( "#icon-search" ).attr( "title", i18n.search );
-      $( "#icon-close" ).attr( "title", i18n.rm_search );
+      $( "#chat-search-text" ).attr( "placeholder", i18n.search );
+      $( "#chat-icon-search" ).attr( "title", i18n.search );
+      $( "#chat-icon-close" ).attr( "title", i18n.rm_search );
       $( "#min-main-chat" ).attr( "title", i18n.minimize );
       if ( $( "#text-status" ).val() == text_status )//Prevent overwrite the status
         $( "#text-status" ).val( i18n.custom_message );
